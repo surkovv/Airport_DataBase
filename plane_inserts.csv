@@ -1,0 +1,7 @@
+model,tail_num,issue_year,first_flight_date,last_technical,status,valid_from_dttm,valid_to_dttm
+Boeing,KEK-555,2010,2012-03-21,2019-11-11,at work,2019-11-12,5999-01-01
+Boeing,KDK-525,2015,2016-02-17,2017-11-11,at work,2017-11-12,2019-11-12
+Boeing,KDK-525,2015,2016-02-17,2017-11-11,decommissioned,2019-11-12,5999-01-01
+Airbus,GHGG123,2000,2002-03-22,2019-12-12,at work,2020-11-12,5999-01-01
+Sukhoi Superjet,123456,2010,2014-03-21,2019-11-11,at work,2014-04-21,5999-01-01
+Airbus,GHCC101,2015,2015-03-21,2019-11-11,at work,2015-05-22,5999-01-01
