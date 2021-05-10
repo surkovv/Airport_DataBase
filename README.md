@@ -21,3 +21,6 @@
 
 ## DDL запросы
 Файл DDL.sql
+
+## Insert'ы
+Файл inserts.sql

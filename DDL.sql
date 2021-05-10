@@ -18,7 +18,7 @@ CREATE TABLE Airport.Ticket (
     passenger_id INTEGER NOT NULL,
     place VARCHAR(7) NOT NULL,
     baggage_storage BOOLEAN NOT NULL,
-    status VARCHAR(10) NOT NULL,
+    status VARCHAR(20) NOT NULL,
     CONSTRAINT flight_type_values
         CHECK (flight_type IN ('Arrival', 'Departure')),
     CONSTRAINT status_values
@@ -27,8 +27,7 @@ CREATE TABLE Airport.Ticket (
 
 CREATE TABLE Airport.ArrivalFlight (
     id SERIAL UNIQUE NOT NULL,
-    plane_model VARCHAR(40) NOT NULL,
-    plane_tail_num INTEGER NOT NULL,
+    plane_tail_num VARCHAR(40) NOT NULL,
     airport_departure VARCHAR(5) NOT NULL,
     arrival_time TIMESTAMP NOT NULL,
     baggage_pick_time TIMESTAMP,
@@ -45,8 +44,7 @@ CREATE TABLE Airport.ArrivalFlight (
 
 CREATE TABLE Airport.DepartureFlight (
     id SERIAL UNIQUE NOT NULL,
-    plane_model VARCHAR(40) NOT NULL,
-    plane_tail_num INTEGER NOT NULL,
+    plane_tail_num VARCHAR(40) NOT NULL,
     airport_destination VARCHAR(5) NOT NULL,
     boarding_end_time TIMESTAMP NOT NULL,
     terminal INTEGER NOT NULL,
