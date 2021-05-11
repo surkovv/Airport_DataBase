@@ -24,3 +24,4 @@
 
 ## Insert'ы
 Файл inserts.sql
+

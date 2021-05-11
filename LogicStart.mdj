@@ -2689,6 +2689,7 @@
 								"$ref": "AAAAAAF4eEqssyJsRlE="
 							},
 							"name": "valid_from_dttm",
+							"type": "PK",
 							"length": 0
 						},
 						{
@@ -3255,7 +3256,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF4eHLMHyRZsiE="
 							},
-							"name": "passanger_id",
+							"name": "passenger_id",
 							"type": "FK",
 							"length": 0
 						},
