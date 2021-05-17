@@ -12,7 +12,7 @@ CREATE TABLE Airport.Passenger (
 );
 
 CREATE TABLE Airport.Ticket (
-    ticket_num SERIAL UNIQUE NOT NULL,
+    ticket_id SERIAL UNIQUE NOT NULL,
     flight_type VARCHAR(13) NOT NULL,
     flight_id INTEGER NOT NULL,
     passenger_id INTEGER NOT NULL,
@@ -29,8 +29,8 @@ CREATE TABLE Airport.ArrivalFlight (
     id SERIAL UNIQUE NOT NULL,
     plane_tail_num VARCHAR(40) NOT NULL,
     airport_departure VARCHAR(5) NOT NULL,
-    arrival_time TIMESTAMP NOT NULL,
-    baggage_pick_time TIMESTAMP,
+    arrival_time TIMESTAMP(0) NOT NULL,
+    baggage_pick_time TIMESTAMP(0),
     terminal INTEGER NOT NULL ,
     entrance_num INTEGER NOT NULL,
     status VARCHAR(20),
@@ -46,7 +46,7 @@ CREATE TABLE Airport.DepartureFlight (
     id SERIAL UNIQUE NOT NULL,
     plane_tail_num VARCHAR(40) NOT NULL,
     airport_destination VARCHAR(5) NOT NULL,
-    boarding_end_time TIMESTAMP NOT NULL,
+    boarding_end_time TIMESTAMP(0) NOT NULL,
     terminal INTEGER NOT NULL,
     gate_num INTEGER NOT NULL,
     status VARCHAR(20),
@@ -74,8 +74,8 @@ CREATE TABLE Airport.Plane (
   first_flight_date DATE CHECK ( first_flight_date >= '1900-01-01' ),
   last_technical_change_date DATE CHECK ( last_technical_change_date >= '1900-01-01' ),
   status VARCHAR(30) NOT NULL,
-  valid_from_dttm TIMESTAMP NOT NULL,
-  valid_to_dttm TIMESTAMP NOT NULL DEFAULT '5999-01-01',
+  valid_from_dttm TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+  valid_to_dttm TIMESTAMP(0) NOT NULL DEFAULT '5999-01-01',
   CONSTRAINT status_values
     CHECK ( status in ('decommissioned', 'at work') )
 );
