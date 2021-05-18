@@ -7,7 +7,7 @@ CREATE TABLE Airport.Passenger (
     last_name VARCHAR(50) NOT NULL,
     gender VARCHAR(20) NOT NULL CHECK ( gender in ('Male', 'Female', 'Other') ),
     birth_date DATE,
-    passport_num CHAR(10) NOT NULL,
+    passport_num VARCHAR(20) NOT NULL,
     citizenship VARCHAR(30) NOT NULL
 );
 
@@ -25,7 +25,7 @@ CREATE TABLE Airport.Ticket (
         CHECK (status IN ('sold', 'check-in completed', 'canceled', 'completed'))
 );
 
-CREATE TABLE Airport.ArrivalFlight (
+CREATE TABLE Airport.Arrival_Flight (
     id SERIAL UNIQUE NOT NULL,
     plane_tail_num VARCHAR(40) NOT NULL,
     airport_departure VARCHAR(5) NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE Airport.ArrivalFlight (
         CHECK (status IN ('planning', 'suspended', 'canceled', 'baggage picking', 'completed'))
 );
 
-CREATE TABLE Airport.DepartureFlight (
+CREATE TABLE Airport.Departure_Flight (
     id SERIAL UNIQUE NOT NULL,
     plane_tail_num VARCHAR(40) NOT NULL,
     airport_destination VARCHAR(5) NOT NULL,
@@ -80,13 +80,13 @@ CREATE TABLE Airport.Plane (
     CHECK ( status in ('decommissioned', 'at work') )
 );
 
-CREATE TABLE Airport.AirlineAndArrival (
+CREATE TABLE Airport.Airline_And_Arrival (
     flight INTEGER NOT NULL,
     airline VARCHAR(5) NOT NULL,
     airline_role VARCHAR(30)
 );
 
-CREATE TABLE Airport.AirlineAndDeparture (
+CREATE TABLE Airport.Airline_And_Departure (
     flight INTEGER NOT NULL,
     airline VARCHAR(5) NOT NULL,
     airline_role VARCHAR(30)

@@ -18,7 +18,7 @@ VALUES (DEFAULT, 'Баир', 'Михайлович', 'Михайлов', 'Male',
 
 COPY airport.airline
 FROM 'C:\Users\Public\airlines_inserts.csv'
-DELIMITER ';' CSV HEADER;
+DELIMITER ',' CSV HEADER;
 
 -- Plane
 
@@ -28,64 +28,64 @@ DELIMITER ',' CSV HEADER;
 
 -- Arrival flight
 
-INSERT INTO airport.arrivalflight
+INSERT INTO airport.arrival_flight
 VALUES (DEFAULT, 'KEK-555', 'DMD', '2021-05-10 18:17', '2021-05-10 18:37', 1, 1, 'baggage picking');
-INSERT INTO airport.arrivalflight
+INSERT INTO airport.arrival_flight
 VALUES (DEFAULT, 'GHGG123', 'EGO', '2021-05-10 20:00', NULL, 4, 45, 'planning');
-INSERT INTO airport.arrivalflight
+INSERT INTO airport.arrival_flight
 VALUES (DEFAULT, 'KEK-555', 'EGO', '2021-05-12 23:15', NULL, 3, 5, 'suspended');
-INSERT INTO airport.arrivalflight
+INSERT INTO airport.arrival_flight
 VALUES (DEFAULT, 'GHGG123', 'VKO', '2020-05-10 20:00', NULL, 4, 45, 'canceled');
-INSERT INTO airport.arrivalflight
+INSERT INTO airport.arrival_flight
 VALUES (DEFAULT, '123456', 'IKT', '2021-06-02 01:00', '2021-06-02 01:15', 2, 1, 'planning');
 
 -- Departure flight
 
-INSERT INTO airport.departureflight
+INSERT INTO airport.departure_flight
 VALUES (DEFAULT, 'KEK-555', 'DMD', '2019-01-01 01:01', 1, 1, 'completed');
-INSERT INTO airport.departureflight
+INSERT INTO airport.departure_flight
 VALUES (DEFAULT, 'GHCC101', 'UFA', '2020-01-04 03:21', 4, 79, 'suspended');
-INSERT INTO airport.departureflight
+INSERT INTO airport.departure_flight
 VALUES (DEFAULT, 'KEK-555', 'DMD', '2019-01-02 01:01', 1, 1, 'completed');
-INSERT INTO airport.departureflight
+INSERT INTO airport.departure_flight
 VALUES (DEFAULT, 'KDK-525', 'EGO', '2016-02-17 01:01', 2, 1, 'canceled');
-INSERT INTO airport.departureflight
+INSERT INTO airport.departure_flight
 VALUES (DEFAULT, 'KDK-525', 'AER', '2018-05-31 21:09', 3, 5, 'completed');
 
 -- Airline and arrival
 
-INSERT INTO airport.airlineandarrival
+INSERT INTO airport.airline_and_arrival
 VALUES (1, 'SU', NULL);
-INSERT INTO airport.airlineandarrival
+INSERT INTO airport.airline_and_arrival
 VALUES (2, 'SU', NULL);
-INSERT INTO airport.airlineandarrival
+INSERT INTO airport.airline_and_arrival
 VALUES (3, 'SU', 'Перевозчик');
-INSERT INTO airport.airlineandarrival
+INSERT INTO airport.airline_and_arrival
 VALUES (3, 'S7', 'Маркетинговый партнёр');
-INSERT INTO airport.airlineandarrival
+INSERT INTO airport.airline_and_arrival
 VALUES (4, 'AA', 'Перевозчик');
-INSERT INTO airport.airlineandarrival
+INSERT INTO airport.airline_and_arrival
 VALUES (4, 'TK', 'Маркетинговый партнёр');
-INSERT INTO airport.airlineandarrival
+INSERT INTO airport.airline_and_arrival
 VALUES (5, 'UA', NULL);
-INSERT INTO airport.airlineandarrival
+INSERT INTO airport.airline_and_arrival
 VALUES (6, 'UA', NULL);
 
 -- Departure flight
 
-INSERT INTO airport.airlineanddeparture
+INSERT INTO airport.airline_and_departure
 VALUES (1, 'UA', NULL);
-INSERT INTO airport.airlineanddeparture
+INSERT INTO airport.airline_and_departure
 VALUES (2, 'AA', NULL);
-INSERT INTO airport.airlineanddeparture
+INSERT INTO airport.airline_and_departure
 VALUES (3, 'SU', NULL);
-INSERT INTO airport.airlineanddeparture
+INSERT INTO airport.airline_and_departure
 VALUES (4, 'S7', NULL);
-INSERT INTO airport.airlineanddeparture
+INSERT INTO airport.airline_and_departure
 VALUES (5, 'S7', 'Перевозчик');
-INSERT INTO airport.airlineanddeparture
+INSERT INTO airport.airline_and_departure
 VALUES (5, 'AA', 'Продажа билетов');
-INSERT INTO airport.airlineanddeparture
+INSERT INTO airport.airline_and_departure
 VALUES (6, 'UA', NULL);
 
 -- Ticket

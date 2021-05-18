@@ -21,31 +21,38 @@ WHERE main_hub = 'ATL';
 
 -- arrival_flight
 
-UPDATE airport.arrivalflight
+UPDATE airport.arrival_flight
 SET status = 'canceled'
 WHERE baggage_pick_time >= '2021-05-10 18:37:00';
 
-INSERT INTO airport.arrivalflight
+INSERT INTO airport.arrival_flight
 VALUES (DEFAULT, 'GHCC101', 'UFA', '2021-12-04 03:21:00', NULL,  4, 50, 'planning');
+
+UPDATE airport.arrival_flight
+SET status = 'baggage picking'
+WHERE id = 5;
 
 -- departure_flight
 
-UPDATE airport.departureflight
+UPDATE airport.departure_flight
 SET boarding_end_time = boarding_end_time + INTERVAL '1 HOUR'
 WHERE id = 2;
 
+INSERT INTO airport.departure_flight
+VALUES (DEFAULT, 'GHCC101', 'EGO', '2021-09-21', 1, 3, 'planning');
+
 -- airline_and_arrival
 
-DELETE FROM airport.airlineandarrival
+DELETE FROM airport.airline_and_arrival
 WHERE airline = 'AA';
 
-UPDATE airport.airlineandarrival
+UPDATE airport.airline_and_arrival
 SET airline_role = NULL
 WHERE flight = 4 AND airline = 'TK';
 
 -- airline_and_departure
 
-UPDATE airport.airlineanddeparture
+UPDATE airport.airline_and_departure
 SET airline_role = 'Продажа билетов'
 WHERE airline = 'AA' AND airline_role IS NULL;
 
@@ -55,7 +62,7 @@ SELECT SUM(
         ELSE 0
     END
            )
-FROM airport.airlineanddeparture
+FROM airport.airline_and_departure
 WHERE airline = 'AA';
 
 -- plane
@@ -84,3 +91,10 @@ VALUES (DEFAULT, 'Departure', 2, 7, '8D', FALSE, 'sold');
 
 DELETE FROM airport.ticket
 WHERE passenger_id = 7;
+
+UPDATE airport.ticket
+SET baggage_storage = TRUE
+WHERE ticket_id = 10;
+
+INSERT INTO airport.ticket
+VALUES (DEFAULT, 'Departure', 6, 1, '1A', TRUE, 'sold');
