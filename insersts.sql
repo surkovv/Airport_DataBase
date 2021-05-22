@@ -110,3 +110,6 @@ INSERT INTO airport.ticket
 VALUES (DEFAULT, 'Arrival', 4, 4, '3E', TRUE, 'completed');
 INSERT INTO airport.ticket
 VALUES (DEFAULT, 'Arrival', 5, 3, '1A', FALSE, 'sold');
+
+SELECT *
+FROM airport.passenger

@@ -22,8 +22,10 @@ SELECT first_name,
        middle_name,
        last_name,
        birth_date,
-       concat(substring(passport_num from 1 for 3), '****')
+       concat(substring(passport_num from 1 for 3), '****') as passport_num
 FROM airport.passenger;
+
+SELECT * FROM views.v_passenger_masked;
 
 -- plane
 CREATE VIEW views.v_plane_current AS
@@ -82,6 +84,8 @@ FROM (
      ) joined
 GROUP BY joined.airline;
 
+SELECT * FROM views.v_pivot_airline_gender;
+
 /*
  2. Пассажиры, у которых день рождения в день планируемого рейса-вылета.
  */
@@ -95,6 +99,8 @@ ON df.id = t.flight_id
 WHERE EXTRACT(month FROM p.birth_date) = EXTRACT(month FROM df.boarding_end_time)
 AND EXTRACT(day FROM p.birth_date) = EXTRACT(day FROM df.boarding_end_time)
 AND df.status = 'planning';
+
+SELECT * FROM views.v_birthday;
 
 /*
  3. Пассажиропоток в каждый день
@@ -121,3 +127,5 @@ FROM (
      ) as united
 GROUP BY date
 ORDER BY date;
+
+SELECT * from views.v_workload;

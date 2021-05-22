@@ -98,3 +98,40 @@ WHERE ticket_id = 10;
 
 INSERT INTO airport.ticket
 VALUES (DEFAULT, 'Departure', 6, 1, '1A', TRUE, 'sold');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SELECT * FROM airport.airline_and_departure;
+
+INSERT INTO airport.airline_and_departure
+VALUES (4, 'TK', 'Перевозчик');
+
+SELECT * FROM airport.airline_and_departure;
+
+UPDATE airport.airline_and_departure
+SET airline_role = 'Продажа'
+WHERE airline = 'TK' AND flight = '4';
+
+SELECT * FROM airport.airline_and_departure;
+
+DELETE FROM airport.airline_and_departure
+WHERE airline = 'TK' AND flight = '4';
+
+
+
+
+
+

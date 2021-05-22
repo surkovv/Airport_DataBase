@@ -26,7 +26,7 @@ FROM (
     ) AS D
 GROUP BY ticker
 ORDER BY count(*) DESC
-FETCH first 3 ROWS ONLY;
+LIMIT 3;
 
 
 SELECT plane.tail_num, plane.model
@@ -68,11 +68,28 @@ FROM (
 ) as cnts
 GROUP BY year;
 
+SELECT count(*), EXTRACT(year FROM flight_time) AS year
+FROM (
+         SELECT DISTINCT coalesce(boarding_end_time, arrival_time) flight_time,
+                         coalesce(af.id, df.id) id,
+                         t.flight_type
+         FROM airport.ticket t
+                  FULL JOIN airport.arrival_flight af
+                            ON t.flight_type = 'Arrival' AND t.flight_id = af.id
+                  FULL JOIN airport.departure_flight df
+                            ON t.flight_type = 'Departure' AND t.flight_id = df.id
+     ) joined
+GROUP BY EXTRACT(year FROM flight_time);
+
 SELECT model, tail_num, last_technical_change_date, status, valid_from_dttm, valid_to_dttm
 FROM (
      SELECT *,
-            lag(last_technical_change_date, 1, '5999/01/01')
-            OVER (PARTITION BY tail_num ORDER BY valid_from_dttm) != plane.last_technical_change_date AS changed
+            CASE
+            WHEN lag(last_technical_change_date, 1, '5999/01/01')
+            OVER (PARTITION BY tail_num ORDER BY valid_from_dttm) != plane.last_technical_change_date
+            THEN TRUE
+            ELSE FALSE
+            END AS changed
      FROM airport.plane as plane
 ) AS plane_add
 WHERE plane_add.changed

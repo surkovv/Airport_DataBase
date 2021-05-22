@@ -8,7 +8,7 @@ BEGIN
         WHERE df.id = flight_id;
         UPDATE airport.ticket t
         SET status = 'completed'
-        WHERE flight_type = 'Departure'
+        WHERE t.flight_type = 'Departure'
           AND status != 'canceled'
           AND t.flight_id = complete_flight.flight_id;
     ELSIF flight_type = 'Arrival' THEN
@@ -17,19 +17,30 @@ BEGIN
         WHERE af.id = flight_id;
         UPDATE airport.ticket t
         SET status = 'completed'
-        WHERE flight_type = 'Arrival'
+        WHERE t.flight_type = 'Arrival'
           AND status != 'canceled'
           AND t.flight_id = complete_flight.flight_id;
     END IF;
 END $$;
 
+CALL complete_flight('Arrival', 2);
+
 CREATE PROCEDURE change_passenger_data(last_name VARCHAR(50),
                                        passport_num VARCHAR(20),
                                        passenger_id INTEGER)
-LANGUAGE SQL
+LANGUAGE plpgsql
 AS $$
-    UPDATE airport.passenger
-    SET last_name = change_passenger_data.last_name,
-        passport_num = change_passenger_data.passport_num
-    WHERE id = passenger_id
+BEGIN
+    IF last_name IS NOT NULL THEN
+        UPDATE airport.passenger p
+        SET last_name = change_passenger_data.last_name
+        WHERE p.id = passenger_id;
+    END IF;
+    IF passport_num IS NOT NULL THEN
+        UPDATE airport.passenger p
+        SET passport_num = change_passenger_data.passport_num
+        WHERE p.id = passenger_id;
+    END IF;
+END;
 $$
+
